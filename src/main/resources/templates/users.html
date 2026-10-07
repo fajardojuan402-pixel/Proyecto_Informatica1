@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Users</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <div th:fragment="content">
+            <h1>Usuarios registrados</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Color usado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="usuario : ${usuarios}"
+                    class="usuario-fila"
+                    th:data-color="${usuario.color}">
+                    <td th:text="${usuario.name}"></td>
+                    <td th:text="${usuario.color}"></td>
+                    <td>
+                        <button
+                                type="button"
+                                class="eliminar-btn"
+                                th:data-id="${usuario.id}">
+                            Eliminar Usuario
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="paginacion">
+                <a th:if="${paginaActual > 0}"
+                   th:href="@{/users(pagina=${paginaActual - 1})}">
+                    Anterior
+                </a>
+                <span>
+                    Página <span th:text="${paginaActual + 1}"></span> de <span th:text="${totalPaginas}"></span>
+                </span>
+                <a th:if="${paginaActual + 1 < totalPaginas}"
+                   th:href="@{/users(pagina=${paginaActual + 1})}">
+                    Siguiente
+                </a>
+            </div>
+            <br>
+            <a href="/">
+                <button type="button">
+                    Volver al inicio
+                </button>
+            </a>
+        </div>
+        <div th:fragment="scripts">
+            <script src="/users.js"></script>
+        </div>
+    </body>
+</html>

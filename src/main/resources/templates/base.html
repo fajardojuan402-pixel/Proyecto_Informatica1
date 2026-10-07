@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(content, scripts)">
+    <head>
+        <meta charset="UTF-8">
+        <title>Random Color Generator</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <div th:replace="${content}"></div>
+        <div th:replace="${scripts}"></div>
+    </body>
+</html>
